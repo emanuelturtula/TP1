@@ -42,14 +42,13 @@ Se hizo click derecho sobre la carpeta *firmware_v2* y en el menú se seleccion�
 ## 1.3 Migrar blinky a TP1
 Se copiaron los archivos del ejemplo blinky a la carpeta *projects/TP1* y se le cambió el nombre de los archivos .c y .h a *TP1*. 
 
-*AGREGAR IMAGEN*
-
+![blinky1](Imagenes/blinky1.PNG)
+![blinky2](Imagenes/blinky2.PNG)
 Previamente a la compilación del proyecto se cambió la ruta dentros del   *project.mk*  por: *PROJECT = projects/TP1*. También se recomienda hacer un *clean* antes de compilar. 
+![blinky3](Imagenes/blinky3.PNG)
+Para hacer un debug primero se cambió, en la ventana de *debug configurations*, la opción *GBD OpenOCD Debugging*
 
-Para hacer un debug primero se cambió, en la ventana de *debug configurations*, la opción *C/C++ Application*
-
-*AGREGAR IMAGEN*
-
+![blinky4](Imagenes/blinky4.PNG)
 
 # 1.3.a Acceso a los GPIO
 
