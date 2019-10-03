@@ -53,7 +53,7 @@ Previamente a la compilación del proyecto se cambió la ruta dentros del   *pro
 
 Para hacer un debug primero se cambió, en la ventana de *debug configurations*, la opción *GBD OpenOCD Debugging*
 
-![blinky4](Imagenes/blinky4.PNG)        
+![blinky4](IMAGENES/blinky4.PNG)        
 
 # 1.3.a Acceso a los GPIO
 
