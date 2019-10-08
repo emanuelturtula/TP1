@@ -138,3 +138,15 @@ Tmabién dentro de TP1_2 se encuentran las siguientes constantes y variables:
 | LED2 | pin correspondiente a LED rojo |
 | TEC4 | cuarto pulsador |
 | LED3 | pin correspondiente a LED verde |
+
+
+# 4: Uso de tickHooks &amp; LEDs c/sAPI
+
+## 4.b Utilidad de la constante "_TICKRATE_MS_"
+
+Al inicio del código se configura la interrupción mediante la "_tickConfig()_" cuya funcionalidad fue descrita anteriormente. _ TICKRATE_MS_ es una macro, se la puede hacer valer 1, 10 o 100. Se le pasa esta macro a la función _tickConfig()_ como argumento. La utilidad de esto es que dentro de la función "_main()_" se ejecute un condicional dado por un "_if()_" a intervalos regulares según el valor de _ TICKRATE_MS_.
+
+## 4.c Utilidad de la constante "_LED_TOGGLE_MS_"
+
+LED_TOGGLE_MS es otra macro que va a determinar el período de parpadeo del LED. Si _ TICKRATE_MS_ vale 1, el led va a prenderse y apagarse cada 100 ms, 500 ms o 1000 ms, según sea que LED_TOGGLE_MS valga 100, 500 o 1000 respectivamente.
+
