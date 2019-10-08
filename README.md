@@ -146,7 +146,13 @@ Tmabién dentro de TP1_2 se encuentran las siguientes constantes y variables:
 
 Al inicio del código se configura la interrupción mediante la "_tickConfig()_" cuya funcionalidad fue descrita anteriormente. _ TICKRATE_MS_ es una macro, se la puede hacer valer 1, 10 o 100. Se le pasa esta macro a la función _tickConfig()_ como argumento. La utilidad de esto es que dentro de la función "_main()_" se ejecute un condicional dado por un "_if()_" a intervalos regulares según el valor de _ TICKRATE_MS_.
 
+![step4a](IMAGENES/4_def.png)   
+
+
 ## 4.c Utilidad de la constante "_LED_TOGGLE_MS_"
 
 LED_TOGGLE_MS es otra macro que va a determinar el período de parpadeo del LED. Si _ TICKRATE_MS_ vale 1, el led va a prenderse y apagarse cada 100 ms, 500 ms o 1000 ms, según sea que LED_TOGGLE_MS valga 100, 500 o 1000 respectivamente.
+
+![step4b](IMAGENES/4_main.png)   
+
 
