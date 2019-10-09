@@ -1,3 +1,4 @@
+
 # Sistemas Embebidos
 Repositorio para el seminario de sistemas embebidos 86.65
 
@@ -138,9 +139,25 @@ Tmabién dentro de TP1_2 se encuentran las siguientes constantes y variables:
 | LED2 | pin correspondiente a LED rojo |
 | TEC4 | cuarto pulsador |
 | LED3 | pin correspondiente a LED verde |
+---
+# 3 Uso de tickHooks
+A continuación se analiza la función tick_01_tickHook, para eso se muestra la primera imagen que tiene la definición de myTickHook:
+![stepb1](DOCUMENTACION3/b1.png) 
+Esta función se ejecuta cada vez que ocurre un tick( o interrupción). Y lo unico que hace es prender o apagar el LED pasado por argumento dependiendo de como estaba anteriormente (si estaba prendido se apaga y viceversa).
+Por otro lado, se observa el main del programa que presenta dos funciones importante tickConfig(50) que me setea el conteo de las interrupciones a 50 mSeg, es decir, que se genera una interrupción cada 50mSeg y por otro lado se tiene la función tickCallbackSet que esta definida en la siguiente figura:
+![stepb7](DOCUMENTACION3/b7.png) 
+Esta función lo que hace es setear dos variables globales que en conjunto me define la función de interrupción, en este caso lo que hace me setea la función de myTickHook (la que me prende el LED) con un argumento que es un puntero al LED que quiero prender. El primer argumento de tickCallbackSet me setea la variable global correspondiente a la función mientras el segundo parametro defino los argumentos que le paso a la función de interrupción. En este caso, se tiene que myTickHook recibe un argumento que es un punturo al LED que quiero prender o apagar por eso cuando quiero prender un LED con la interrupción uso mi función de tickCallbackSet.
+![stepb2](DOCUMENTACION3/b2.png) 
+Cuando se llama a tickConfig() una macro lleva a la funcion tickInit():
+![stepb3](DOCUMENTACION3/b3.png) 
+En SysTick_Config() se configura los tick por segundo de la interrupcion:
+![stepb4](DOCUMENTACION3/b4.png)  
+Finalmente la funcion NVIC_SetPriority() es la encargada de configurar los registro del microcontrolador correspoiendes a la prioridad de interrupcion:
+![stepb5](DOCUMENTACION3/b5.png)  
 
+---
 
-# 4: Uso de tickHooks &amp; LEDs c/sAPI
+# 4 Uso de tickHooks &amp; LEDs c/sAPI
 
 ## 4.b Utilidad de la constante "_TICKRATE_MS_"
 
