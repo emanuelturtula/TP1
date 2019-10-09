@@ -379,3 +379,279 @@ int main(void){
 }
 
 #endif
+
+#ifdef TP1_5
+//#include "led_sequences.h"   // <= own header (optional)
+#include "sapi.h"              // <= sAPI header
+/*==================[macros and definitions]=================================*/
+
+/*==================[internal data declaration]==============================*/
+
+/*==================[internal functions declaration]=========================*/
+
+/*==================[internal data definition]===============================*/
+
+/*==================[external data definition]===============================*/
+
+/*==================[internal functions definition]==========================*/
+
+/*==================[external functions definition]==========================*/
+
+/* FUNCION PRINCIPAL, PUNTO DE ENTRADA AL PROGRAMA LUEGO DE RESET. */
+int main(void){
+
+   /* ------------- INICIALIZACIONES ------------- */
+
+   /* Inicializar la placa */
+   boardConfig();
+
+   /* Variable de Retardo no bloqueante */
+   delay_t delay;
+
+   /* Inicializar Retardo no bloqueante con tiempo en milisegundos
+      (500ms = 0,5s) */
+   delayConfig( &delay, 500 );
+
+   int8_t i = 3;
+   uint8_t sequence = 0;
+
+   /* HABILITO UART */
+   DEBUG_PRINT_ENABLE;
+
+   debugPrintConfigUart( UART_USB, 115200 );
+   debugPrintString( "DEBUG c/SAPI\n" );
+
+
+   /* ------------- REPETIR POR SIEMPRE ------------- */
+   while(1) {
+      if ( !gpioRead( TEC1 ) ){
+         sequence = 0;
+      }
+      if ( !gpioRead( TEC2 ) ){
+         /* Velocidad Rapida */
+         delayWrite( &delay, 150 );
+      }
+      if ( !gpioRead( TEC3 ) ){
+         /* Velocidad Lenta */
+         delayWrite( &delay, 750 );
+      }
+      if ( !gpioRead( TEC4 ) ){
+         sequence = 1;
+      }
+
+      /* delayRead retorna TRUE cuando se cumple el tiempo de retardo */
+      if ( delayRead( &delay ) ){
+         if ( !sequence ){
+            i--;
+         }
+         else{
+            i++;
+         }
+         debugPrintString( "LED TOGGLE\r\n" );
+      }
+
+      if ( i == 0 ){
+         gpioWrite( LEDB, ON );
+         gpioWrite( LED1, OFF );
+         gpioWrite( LED2, OFF );
+         gpioWrite( LED3, OFF );
+		 gpioWrite( LEDR, OFF );
+		 gpioWrite( LEDG, OFF );
+      }
+      if ( i == 1 ){
+         gpioWrite( LEDB, OFF );
+         gpioWrite( LED1, ON );
+         gpioWrite( LED2, OFF );
+         gpioWrite( LED3, OFF );
+		 gpioWrite( LEDR, OFF );
+		 gpioWrite( LEDG, OFF );
+      }
+      if ( i == 2 ){
+         gpioWrite( LEDB, OFF );
+         gpioWrite( LED1, OFF );
+         gpioWrite( LED2, ON );
+         gpioWrite( LED3, OFF );
+		 gpioWrite( LEDR, OFF );
+		 gpioWrite( LEDG, OFF );
+      }
+      if ( i == 3 ){
+         gpioWrite( LEDB, OFF );
+         gpioWrite( LED1, OFF );
+         gpioWrite( LED2, OFF );
+         gpioWrite( LED3, ON );
+		 gpioWrite( LEDR, OFF );
+		 gpioWrite( LEDG, OFF );
+      }
+      if ( i == 4 ){
+		 gpioWrite( LEDB, OFF );
+		 gpioWrite( LED1, OFF );
+		 gpioWrite( LED2, OFF );
+		 gpioWrite( LED3, OFF );
+		 gpioWrite( LEDR, ON );
+		 gpioWrite( LEDG, OFF );
+
+      }
+      if ( i == 5 ){
+		 gpioWrite( LEDB, OFF );
+		 gpioWrite( LED1, OFF );
+		 gpioWrite( LED2, OFF );
+		 gpioWrite( LED3, OFF );
+		 gpioWrite( LEDR, OFF );
+		 gpioWrite( LEDG, ON  );
+      }
+
+      if ( i < 0 ){
+         i = 5;
+      }
+      if ( i > 5 ){
+         i = 0;
+      }
+
+   }
+
+   /* NO DEBE LLEGAR NUNCA AQUI, debido a que a este programa no es llamado
+      por ningun S.O. */
+   return 0 ;
+}
+
+#endif
+
+#ifdef TP1_6
+//#include "led_sequences.h"   // <= own header (optional)
+#include "sapi.h"              // <= sAPI header
+/*==================[macros and definitions]=================================*/
+
+/*==================[internal data declaration]==============================*/
+
+/*==================[internal functions declaration]=========================*/
+
+/*==================[internal data definition]===============================*/
+
+/*==================[external data definition]===============================*/
+
+/*==================[internal functions definition]==========================*/
+
+/*==================[external functions definition]==========================*/
+
+/* FUNCION PRINCIPAL, PUNTO DE ENTRADA AL PROGRAMA LUEGO DE RESET. */
+int main(void){
+
+   /* ------------- INICIALIZACIONES ------------- */
+
+   /* Inicializar la placa */
+   boardConfig();
+
+   /* Variable de Retardo no bloqueante */
+   delay_t delay;
+
+   /* Inicializar Retardo no bloqueante con tiempo en milisegundos
+      (500ms = 0,5s) */
+   delayConfig( &delay, 500 );
+
+   int8_t i = 3;
+   uint8_t sequence = 0;
+
+   /* HABILITO UART */
+   DEBUG_PRINT_ENABLE;
+
+   debugPrintConfigUart( UART_USB, 115200 );
+   debugPrintString( "DEBUG c/SAPI\n" );
+
+
+   /* ------------- REPETIR POR SIEMPRE ------------- */
+   while(1) {
+      if ( !gpioRead( TEC1 ) ){
+         sequence = 0;
+         debugPrintString( "LED SEQUENCE TO LEFT\r\n" );
+      }
+      if ( !gpioRead( TEC2 ) ){
+         /* Velocidad Rapida */
+         delayWrite( &delay, 150 );
+         debugPrintString( "LED FAST SPEED\r\n" );
+      }
+      if ( !gpioRead( TEC3 ) ){
+         /* Velocidad Lenta */
+         delayWrite( &delay, 750 );
+         debugPrintString( "LED SLOW SPEED\r\n" );
+      }
+      if ( !gpioRead( TEC4 ) ){
+         sequence = 1;
+         debugPrintString( "LED SEQUENCE TO RIGHT\r\n" );
+      }
+
+      /* delayRead retorna TRUE cuando se cumple el tiempo de retardo */
+      if ( delayRead( &delay ) ){
+         if ( !sequence ){
+            i--;
+         }
+         else{
+            i++;
+         }
+         //debugPrintString( "LED TOGGLE\r\n" );
+      }
+
+      if ( i == 0 ){
+         gpioWrite( LEDB, ON );
+         gpioWrite( LED1, OFF );
+         gpioWrite( LED2, OFF );
+         gpioWrite( LED3, OFF );
+		 gpioWrite( LEDR, OFF );
+		 gpioWrite( LEDG, OFF );
+      }
+      if ( i == 1 ){
+         gpioWrite( LEDB, OFF );
+         gpioWrite( LED1, ON );
+         gpioWrite( LED2, OFF );
+         gpioWrite( LED3, OFF );
+		 gpioWrite( LEDR, OFF );
+		 gpioWrite( LEDG, OFF );
+      }
+      if ( i == 2 ){
+         gpioWrite( LEDB, OFF );
+         gpioWrite( LED1, OFF );
+         gpioWrite( LED2, ON );
+         gpioWrite( LED3, OFF );
+		 gpioWrite( LEDR, OFF );
+		 gpioWrite( LEDG, OFF );
+      }
+      if ( i == 3 ){
+         gpioWrite( LEDB, OFF );
+         gpioWrite( LED1, OFF );
+         gpioWrite( LED2, OFF );
+         gpioWrite( LED3, ON );
+		 gpioWrite( LEDR, OFF );
+		 gpioWrite( LEDG, OFF );
+      }
+      if ( i == 4 ){
+		 gpioWrite( LEDB, OFF );
+		 gpioWrite( LED1, OFF );
+		 gpioWrite( LED2, OFF );
+		 gpioWrite( LED3, OFF );
+		 gpioWrite( LEDR, ON );
+		 gpioWrite( LEDG, OFF );
+
+      }
+      if ( i == 5 ){
+		 gpioWrite( LEDB, OFF );
+		 gpioWrite( LED1, OFF );
+		 gpioWrite( LED2, OFF );
+		 gpioWrite( LED3, OFF );
+		 gpioWrite( LEDR, OFF );
+		 gpioWrite( LEDG, ON  );
+      }
+
+      if ( i < 0 ){
+         i = 5;
+      }
+      if ( i > 5 ){
+         i = 0;
+      }
+
+   }
+
+   /* NO DEBE LLEGAR NUNCA AQUI, debido a que a este programa no es llamado
+      por ningun S.O. */
+   return 0 ;
+}
+
+#endif
