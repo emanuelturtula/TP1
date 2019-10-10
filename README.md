@@ -174,7 +174,7 @@ LED_TOGGLE_MS es otra macro que va a determinar el período de parpadeo del LED.
 
 ---
 
-# 5 
+# 5 Uso de la UART
 
 EL codigo es similar al punto 4, pero agrega el envio de mensajes por puerto serie. Para realizar esto se utilizó la funcion debugPrintString(), la cual llama a la funcion printString(). Esta última a su vez llama a la función uartWriteString(), la cual llama a una función que escribe byte a byte mediante UART.
 
